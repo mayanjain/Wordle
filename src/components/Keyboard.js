@@ -10,51 +10,10 @@ function Keyboard() {
   const {
     board,
     disabledLetters,
-    currAttempt,
-    gameOver,
-    onSelectLetter,
-    onEnter,
-    onDelete,
   } = useContext(AppContext);
 
-  const handleKeyboard = useCallback(
-    (event) => {
-      if (gameOver.gameOver) return;
-      if (event.key === "Enter") {
-        onEnter();
-      } else if (event.key === "Backspace") {
-        onDelete();
-      } else {
-        keys1.forEach((key) => {
-          if (event.key.toLowerCase() === key.toLowerCase()) {
-            onSelectLetter(key);
-          }
-        });
-        keys2.forEach((key) => {
-          if (event.key.toLowerCase() === key.toLowerCase()) {
-            onSelectLetter(key);
-          }
-        });
-        keys3.forEach((key) => {
-          if (event.key.toLowerCase() === key.toLowerCase()) {
-            onSelectLetter(key);
-          }
-        });
-      }
-    },
-    [currAttempt]
-  );
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyboard);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyboard);
-    };
-  }, [handleKeyboard]);
-
-  console.log(disabledLetters);
   return (
-    <div className="keyboard" onKeyDown={handleKeyboard}>
+    <div className="keyboard" >
       <div className="line1">
         {keys1.map((key) => {
           return <Key keyVal={key} disabled={disabledLetters.includes(key)} />;
