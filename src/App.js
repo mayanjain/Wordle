@@ -26,9 +26,11 @@ function App() {
   }, []);
 
   const onEnter = () => {
-    if (currAttempt.letter !== 5) return;
+    if (currAttempt.letter !== 5 || gameOver.guessedWord) return;
 
     let currWord = "";
+    // correctWord="Dealt";
+    console.log(correctWord);
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
     }
@@ -36,9 +38,10 @@ function App() {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
       alert("Word not found");
+      return;
     }
 
-    if (currWord === correctWord) {
+    if (currWord == correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
     }
