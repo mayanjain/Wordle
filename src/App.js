@@ -27,13 +27,21 @@ function App() {
 
   const onEnter = () => {
     if (currAttempt.letter !== 5 || gameOver.guessedWord) return;
+    
+    console.log(gameOver);
+    
+    // correctWord="Dealt";
+
+    console.log(correctWord);
 
     let currWord = "";
-    // correctWord="Dealt";
-    console.log(correctWord);
+
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
     }
+
+    console.log(currWord);
+
     if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letter: 0 });
     } else {
@@ -41,11 +49,11 @@ function App() {
       return;
     }
 
-    if (currWord == correctWord) {
+    if (currWord.toLowerCase() == correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
     }
-    console.log(currAttempt);
+    // console.log(currAttempt);
     if (currAttempt.attempt === 5) {
       setGameOver({ gameOver: true, guessedWord: false });
       return;

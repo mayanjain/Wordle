@@ -12,7 +12,7 @@ function GameOver() {
     onDelete,
   } = useContext(AppContext);
   return (
-    <div className="gameOver">
+    <div className="gameOver" style={{margin:'20px'}}>
       <h3>
         {gameOver.guessedWord
           ? "You Correctly Guessed the Wordle"
