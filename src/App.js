@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
-      setCorrectWord(words.todaysWord);
+      setCorrectWord(words.todaysWord.toUpperCase());
     });
   }, []);
 
@@ -49,7 +49,7 @@ function App() {
       return;
     }
 
-    if (currWord.toLowerCase() == correctWord) {
+    if (currWord == correctWord) {
       setGameOver({ gameOver: true, guessedWord: true });
       return;
     }
